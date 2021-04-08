@@ -1,0 +1,73 @@
+
+  @font-face {
+    font-family: OpenSans;
+    src: url("/assets/fonts/OpenSans-Regular.ttf"); }
+
+  @font-face {
+    font-family: Copper;
+    src: url("/assets/fonts/COPRGTB.TTF"); }
+    
+  @font-face {
+    font-family: Quicksand;
+    src: url("/assets/fonts/Quicksand-Regular.otf"); }
+
+    @font-face {
+      font-family: Nova;
+      src: url("/assets/fonts/Novecentosanswide-Normal.ttf"); }
+          
+      @font-face {
+        font-family: NovaDemi;
+        src: url("/assets/fonts/Novecentosanswide-DemiBold.ttf"); }
+            
+              
+  body {
+    background-image: linear-gradient(to right, #83bbf7, rgb(218, 229, 250));
+    font-family: OpenSans; 
+    font-size:10pt;
+  }
+
+  h6 {
+      font-size:11pt;
+      font-family:nova
+  }
+
+  .align-center {
+      text-align:center;
+  }
+
+  .nova {
+    font-family: Nova;
+  }
+  .novabold {
+    font-family: NovaDemi;
+  }
+
+  .copper {
+    font-family: Copper;
+  }
+
+  .card {
+    background-color: rgb(249, 252, 255); 
+    border:1px solid royalblue;
+
+  }
+  .card-header {
+    background-image: linear-gradient(to right,rgb(226, 226, 226), rgb(129, 129, 129));
+    text-align: center;
+
+  }
+  .card-footer {
+    background-color: royalblue; 
+    color: white;
+    font: size 9pt;
+    font-family:Nova;
+    padding:.5em;
+
+  }
+  .flex-con {
+    display:flex;
+    flex-wrap:wrap;
+    flex-direction:row;
+    align-items:align-center;
+  }
+

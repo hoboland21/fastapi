@@ -1,0 +1,14 @@
+configparser
+ipython
+requests
+pytz
+fastapi 
+uvicorn[standard]
+databases
+sqlalchemy<1.4
+asyncpg
+psycopg2
+passlib
+python-jose
+python-multipart
+python-decouple

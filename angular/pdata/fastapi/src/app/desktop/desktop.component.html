@@ -1,0 +1,22 @@
+<div class="container-fluid header">
+
+  <div class="row">
+
+    <div class="col-md-2" style="text-align:center">
+      <a href="#"><img src="/assets/img/MCSIcon.png" style="height:50px" class="logo"></a>
+      <h5 class="d-inline-block nova">MCS Time Sheet</h5>
+    </div>
+
+    <div class="col-md-8" style="text-align:center">
+      <p>{{ today | date : 'fullDate' }}</p>
+    </div>
+
+    <div class="col-md-2" style="text-align:center">
+      <div class="mb-3" *ngIf="user.username">{{ user.username }}</div>
+      <button class="btn btn-sm btn-outline-warning ml-3"                       (click)="logOff()">Log Off</button>
+    </div>
+
+  </div>
+<button (click)='getUserList()'>User List</button><br>
+{{token}}
+</div>
