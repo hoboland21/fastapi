@@ -6,6 +6,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map,tap } from 'rxjs/operators';
 import { AppEnv } from '@app/_helpers/appenv';
 import { IUser } from '@app/_interfaces/IUser';
+import  jwt_decode  from "jwt-decode";
+
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   }; 
@@ -62,5 +64,20 @@ export class AuthService {
         this.changeLoggedIn(false)
         this.router.navigate(['login']);
     }
+//==================================
+    public getTokenRemainingTime() {
+        const accessToken = localStorage.getItem('token');
+        if (!accessToken) {
+          return 0;
+        }
+        const jwtToken = JSON.parse(atob(accessToken.split('.')[1]));
+        const expires = new Date(jwtToken.exp * 1000).getTime() - Date.now();
+        const tkn = jwt_decode(accessToken)
+        return { "time":expires,"token": tkn}
+      }
 
 }
+
+
+
+    

@@ -13,6 +13,6 @@ from main import app
 
 router = APIRouter()
 
-@router.get("/content", response_model=model.User)
+@router.get("/content")
 async def read_content():
     pass

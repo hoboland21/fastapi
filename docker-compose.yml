@@ -3,7 +3,11 @@ services:
 #-------------------------------------
 
   db:
-    image: postgres
+    build:
+      context: postgres
+    volumes:
+      - ./postgres:/usr/local/app/
+      - fastapi-postgres-db:/var/lib/postgresql/data
     restart: always
     environment:
       POSTGRES_DB: fastapi
@@ -45,3 +49,8 @@ services:
     restart: always
     ports:
       - 8080:8080
+
+volumes:
+  fastapi-postgres-db: 
+    external : yes    
+  

@@ -16,7 +16,7 @@ router = APIRouter()
 # =========================
 @router.post("/auth/register",response_model=model.UserList)
 async def register(user: model.UserCreate):
-    userDB = await util.get_user(user.username)
+    userDB = await util.findExistedUser(user.username)
     if userDB:
         raise HTTPException(status_code=400, detail="Username already exists")
     

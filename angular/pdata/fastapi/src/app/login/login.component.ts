@@ -26,6 +26,15 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  register() {
+
+  }
+
+  forgot() {
+
+  }
+
+  
   onSubmit(data) {
     this.authService.login(data)
       .subscribe(

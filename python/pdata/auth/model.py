@@ -7,7 +7,6 @@ class UserList(BaseModel):
     password        : str
     first_name      : str
     last_name       : str
-
     email           : str
     status          : str
     created_at       : str
@@ -20,8 +19,6 @@ class UserCreate(BaseModel) :
     last_name       : str = Field(..., example="Clark")
     email           : str = Field(..., example="jc@vgoran.com")
 
-class UserPWD(UserList):
-    password:str
 
 class Token(BaseModel):
     access_token: str
@@ -42,17 +39,7 @@ class UserUpdate(BaseModel) :
 class UserDelete(BaseModel) :
     id              : str = Field(..., example="Enter your ID")
 
-
 class UserLogin(BaseModel) :
     username        : str 
     password        : str 
 
-class User(BaseModel):
-    username: str
-    email: Optional[str] = None
-    full_name: Optional[str] = None
-    disabled: Optional[bool] = None
-
-
-class UserInDB(User):
-    hashed_password: str

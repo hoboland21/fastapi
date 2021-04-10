@@ -2,3 +2,7 @@
     background-color: inherit;
     border:none;
 }
+
+.point {
+    cursor:pointer;
+}

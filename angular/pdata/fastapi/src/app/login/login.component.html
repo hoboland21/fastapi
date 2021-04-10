@@ -1,36 +1,39 @@
-
 <div>
-    <div class="card" style="margin:200px auto; width:400px; border:1px solid green;background-color:inherit" >
-      <div class="card-header" style="text-align:center" >
-        <img routerLink="home" src="assets/img/Working Logo Icon.png" alt="CS Icon" >
-      </div>
-      <div class="card-body" style="background-color:rgb(206, 204, 216)">
-
-        <form [formGroup] = "formdata" (ngSubmit) = "onSubmit(formdata.value)" >
-          <input type = "text" class = "form-control" name = "username" placeholder = "username" 
-            formControlName="username">
-          <br/>
-          
-          <input type = "password" class = "form-control" name="password" 
-            placeholder = "password" formControlName = "password">
-          <br/>
-          
-          <input type = "submit" class = "form-control" value = "Log In">
-    
-        </form>
-      
-  
-
-      </div>
-    
-   
-    
+  <div class="card" style="margin:200px auto; width:400px; border:1px solid green;background-color:inherit">
+    <div class="card-header" style="text-align:center">
+      <img routerLink="home" src="assets/img/Working Logo Icon.png" alt="CS Icon">
     </div>
-    
+    <div class="card-body" style="background-color:rgb(206, 204, 216)">
 
-     
- 
- 
+      <form [formGroup]="formdata" (ngSubmit)="onSubmit(formdata.value)">
+        <input type="text" class="form-control" name="username" placeholder="username" formControlName="username">
+        <br />
+
+        <input type="password" class="form-control" name="password" placeholder="password" formControlName="password">
+        <br />
+
+        <input type="submit" class="form-control" value="Log In">
+
+      </form>
+      <br>
+      <div>
+        <span (click)="register()" class="point m-2">Register</span>
+        <span (click)="forgot()" class="point m-2">Forgot Password</span>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="card" style="margin:20px auto; width:400px; border:1px solid green;background-color:inherit">
+    <div class="card-header" style="text-align:center">
+      <h4>Register</h4>
+    </div>
+    <div class="card-body" style="background-color:rgb(206, 204, 216)">
+
+      <app-register></app-register>
+
+    </div>
+
+
 
   </div>
-  

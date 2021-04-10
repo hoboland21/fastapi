@@ -14,7 +14,8 @@ export class DesktopComponent implements OnInit {
 //  subscription : Subscription;
   isLoggedIn: boolean;
   username:string;
-  user:IUser
+  user:any
+  token_ttl:any
   token:any 
   constructor(
     private authService : AuthService,
@@ -29,15 +30,18 @@ export class DesktopComponent implements OnInit {
 
   }
 
+  setTokenInfo() {
+    this.token_ttl = this.authService.getTokenRemainingTime()
+  }
 
   getUserList() {
+    this.setTokenInfo()
     this.userService.getUserList().subscribe(
-      data => console.log(data)
+      data => this.user = data
     )
-  
   }
   ngOnInit(): void {
- 
+    this.getUserList();
     this.token = this.authService.getToken()
 
     this.authService.isLoggedIn.subscribe(
