@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import {  FormGroup, FormControl } from '@angular/forms';
+import { IUser }  from '@app/_interfaces/IUser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs/operators';
 @Component({
@@ -10,6 +11,8 @@ import { take } from 'rxjs/operators';
 })
 export class LoginComponent implements OnInit {
   formdata;
+  user : IUser
+
 
   constructor(
     private authService: AuthService,
@@ -27,6 +30,7 @@ export class LoginComponent implements OnInit {
   }
 
   register() {
+    this.router.navigate(['register']);
 
   }
 
@@ -38,8 +42,8 @@ export class LoginComponent implements OnInit {
   onSubmit(data) {
     this.authService.login(data)
       .subscribe(
-         (data) => {
-           console.log("Returned",data)
+         (data) => { 
+           console.log(data)
           localStorage.setItem('token',data.access_token);
           console.log(localStorage.getItem('token'))
           this.authService.changeLoggedIn(true);

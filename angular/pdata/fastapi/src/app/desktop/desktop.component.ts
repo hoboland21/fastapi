@@ -11,51 +11,35 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class DesktopComponent implements OnInit {
   today = new Date()
-//  subscription : Subscription;
+  //  subscription : Subscription;
   isLoggedIn: boolean;
-  username:string;
-  user:any
-  token_ttl:any
-  token:any 
+  username: string;
+  user: IUser
+  token_ttl: any
+  token: any
+  curr_user: IUser;
   constructor(
-    private authService : AuthService,
-    private userService : UserService,
+    private authService: AuthService,
+    private userService: UserService,
     private router: Router,
 
-  
+
   ) { }
   logOff() {
     this.authService.logout()
     this.router.navigate(['login']);
-
   }
+
+
 
   setTokenInfo() {
     this.token_ttl = this.authService.getTokenRemainingTime()
   }
 
-  getUserList() {
-    this.setTokenInfo()
-    this.userService.getUserList().subscribe(
-      data => this.user = data
-    )
-  }
+
   ngOnInit(): void {
-    this.getUserList();
-    this.token = this.authService.getToken()
 
-    this.authService.isLoggedIn.subscribe(
-        token => {
-          if(token) {
-            this.isLoggedIn = token;
-           }
-           else {
-             this.router.navigate(['login'])
-           }
-        }
-      )
   }
+
 }
-
-
 

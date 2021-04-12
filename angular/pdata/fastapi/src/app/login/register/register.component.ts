@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl, EmailValidator } from '@angular/forms';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormArray, FormBuilder, Validators, FormControl, EmailValidator} from '@angular/forms';
 import { IUser } from '@app/_interfaces/IUser';
-import { UserService } from '@app/_services/user.service'
-
+import { UserService } from '@app/_services/user.service';
+import { ConfirmedValidator} from './validator';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -11,34 +12,60 @@ import { UserService } from '@app/_services/user.service'
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
+  
   constructor(
     private userService: UserService,
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
 
   ) { }
 
 
+
   // ---- Variables ------
-  user: IUser
+  
+  @Input() user:IUser;
+  @Output() userChange = new EventEmitter<IUser>();
+  save_user: IUser
+
+
   userEditForm = new FormGroup({
-    id: new FormControl(''),
-    first_name: new FormControl('', Validators.required),
-    last_name: new FormControl('', Validators.required),
-    username: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
-    password2: new FormControl('', Validators.required),
-    created_at: new FormControl('', Validators.required),
-    modified_at: new FormControl('', Validators.required),
+    first_name: new FormControl('', [ Validators.required]),
+    last_name : new FormControl('', [ Validators.required]),
+    email     : new FormControl('', [ Validators.email, Validators.required ]),
+    username  : new FormControl('', [ Validators.required]),
+    password  : new FormControl('', [ Validators.required, Validators.minLength(6)]),
+    password2 : new FormControl('', [ Validators.required]),
+  },{
+    validators: [ConfirmedValidator("password","password2")]
   })
 
-
-
-  ngOnInit(): void {
+  get f() {
+    return this.userEditForm.controls
   }
 
+  ngOnInit(): void {
+    this.userEditForm.patchValue(this.user)
+  }
 
+return_login() {
+  this.router.navigate(['login']);
+
+}
   saveUser() {
-
+    this.save_user = this.userEditForm.value
+    this.userService.saveUser(this.save_user).subscribe(
+      data => { 
+        console.log(data);
+        this.router.navigate(['login']);
+      },
+      error => {
+        this.userEditForm.reset()
+      }
+    )
+    
+   
   }
   updateUser() {
 

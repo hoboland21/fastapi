@@ -24,15 +24,17 @@ export class UserService {
     private API_URL = this.env.API_URL
   //==================================
 
-  getUserList(): Observable<any[]> {
+  getUser(): Observable<IUser> {
     const staffURL = `${this.API_URL}/users/me`
-    return this.http.get<any[]>(staffURL)
+    return this.http.get<IUser>(staffURL)
   }
 
-
+  saveUser(user:IUser): Observable<IUser> {
+    const staffURL = `${this.API_URL}/auth/register`
+    return this.http.post<IUser>(staffURL,user,httpOptions)
+    
+  } 
 
 
 }
-
-
 

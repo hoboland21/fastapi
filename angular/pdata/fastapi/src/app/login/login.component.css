@@ -6,3 +6,17 @@
 .point {
     cursor:pointer;
 }
+
+
+.card {
+
+    margin:20px auto; 
+    width:400px;
+     border:1px solid green;
+    background-color:inherit
+ }
+ 
+label {
+    margin-top:10px;
+    margin-bottom:0px;
+}

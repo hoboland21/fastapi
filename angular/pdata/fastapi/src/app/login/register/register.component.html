@@ -1,44 +1,55 @@
-<form novalidate [formGroup]="userEditForm">
-  <div class="flex-con">
-      <div class="inputcell">
-          <p>User ID</p>
-          <input type="text" disabled formControlName='id' class="form-control">
-      </div>
-      <div class="inputcell">
-          <p>First Name</p>
-          <input type="text" formControlName='first_name' class="form-control">
-      </div>
-      <div class="inputcell">
-          <p>Last Name</p>
-          <input type="text" formControlName='last_name' class="form-control">
-      </div>
+<app-desktop></app-desktop>
 
-      <div class="inputcell">
-        <p>Email Address</p>
-        <input type="text" formControlName='email' class="form-control">
+<div class="card">
+    <div class="card-header" style="text-align:center">
+        <h4>Register</h4>
     </div>
-    <div class="inputcell">
-        <p>Password</p>
-        <input type="text" formControlName='password' class="form-control">
+    <div class="card-body" style="background-color:rgb(206, 204, 216)">
+        <form validate [formGroup]="userEditForm">
+
+            <div [class.error_message]="f.first_name.touched && f.first_name.errors">
+                <label for="first_name">First Name</label>
+                <input id="first_name" type="text" formControlName='first_name' class="form-control">
+            </div>
+
+            <div [class.error_message]="f.last_name.touched && f.last_name.errors">
+                <label for="last_name">Last Name</label>
+                <input id="last_name" type="text" formControlName='last_name' class="form-control">
+            </div>
+
+
+            <div [class.error_message]="f.email.touched && f.email.errors">
+                <label for="email">Email Address</label>
+                <input id="email" type="email" formControlName='email' class="form-control">
+            </div>
+
+            <hr>
+            <div [class.error_message]="f.username.touched && f.username.errors">
+                <label for="username">Username</label>
+                <input id="username" type="text" formControlName='username' class="form-control">
+            </div>
+
+            <div [class.error_message]="f.password.touched && f.password.errors">
+                <label for="password">Password</label>
+                <input id="password" type="password" formControlName='password' class="form-control">
+            </div>
+
+            <div [class.error_message]="f.password2.touched && f.password2.errors">
+                <label for="password2">Password Confirm</label>
+                <input id="password2" type="password" formControlName='password2' class="form-control">
+            </div>
+
+            <div class="input-group mt-4">
+                <button (click)='clearForm()' class="form-control mr-3">Clear</button>
+                <button (click)='saveUser()' *ngIf="userEditForm.valid" class="form-control mr-3">Save</button>
+                <button (click)='updateUser()' *ngIf="userEditForm.value.id" class="form-control mr-3">Update</button>
+                <button (click)='deleteUser()' *ngIf="userEditForm.value.id" class="form-control ml-3">Delete</button>
+            </div>
+        </form>
+
     </div>
-    <div class="inputcell">
-        <p>Password Confirm</p>
-        <input type="text" formControlName='password2' class="form-control">
+    <div class="card-footer">
+        <span (click)="return_login()" style="cursor:pointer">  return to Login </span>    
+
     </div>
-
-
-
-
-    
 </div>
-
-  <div class="input-group mt-4">
-      <button (click)='clearForm()' class="form-control mr-3">Clear</button>
-      <button (click)='saveUser()' *ngIf="!userEditForm.value.id &&  userEditForm.valid"
-          class="form-control mr-3">Save</button>
-      <button (click)='updateUser()' *ngIf="userEditForm.value.id"
-          class="form-control mr-3">Update</button>
-      <button (click)='deleteUser()' *ngIf="userEditForm.value.id"
-          class="form-control ml-3">Delete</button>
-  </div>
-</form>
