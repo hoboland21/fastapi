@@ -4,17 +4,19 @@
 
     <div class="col-md-2" style="text-align:center">
       <a href="#"><img src="/assets/img/Working Logo Icon.png" style="height:50px" class="logo"></a>
-    
     </div>
 
     <div class="col-md-8" style="text-align:center">
       <p><app-clock></app-clock></p>
     </div>
-
+    
     <div class="col-md-2" style="text-align:center">
-      <button class="btn btn-sm btn-outline-warning ml-3" (click)="logOff()">Log Off</button>
-      
+      <div *ngIf="user" style="font-family:nova;font-size:14pt;margin:3px">{{ user.username }} </div>
+      <button *ngIf='isLoggedIn' class="btn btn-sm btn-outline-warning ml-3" (click)="logOff()">Log Off</button>
+      <button *ngIf='!isLoggedIn' class="btn btn-sm btn-outline-warning ml-3" (click)="logOn()">Log On</button>
+   
     </div>
 
   </div>
+ 
 </div>

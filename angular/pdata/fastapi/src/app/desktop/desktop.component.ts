@@ -3,6 +3,7 @@ import { IUser } from '@app/_interfaces/IUser';
 import { AuthService } from '@app/_services/auth.service';
 import { UserService } from '@app/_services/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { state } from '@angular/animations';
 
 @Component({
   selector: 'app-desktop',
@@ -18,6 +19,7 @@ export class DesktopComponent implements OnInit {
   token_ttl: any
   token: any
   curr_user: IUser;
+  router_state;
   constructor(
     private authService: AuthService,
     private userService: UserService,
@@ -29,16 +31,21 @@ export class DesktopComponent implements OnInit {
     this.authService.logout()
     this.router.navigate(['login']);
   }
-
-
-
-  setTokenInfo() {
-    this.token_ttl = this.authService.getTokenRemainingTime()
+  logOn() {
+    this.router.navigate(['login']);
   }
 
-
+  
   ngOnInit(): void {
 
+    this.userService.getUser().subscribe(
+      data => this.user = data
+    )
+    this.authService.isLoggedIn.subscribe(
+      data=> {
+        this.isLoggedIn = data;
+      }
+    ) 
   }
 
 }

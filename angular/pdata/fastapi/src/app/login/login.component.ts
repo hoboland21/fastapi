@@ -21,7 +21,13 @@ export class LoginComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    
+    this.authService.isLoggedIn.subscribe(
+      data=>{
+        if(data) {
+          this.router.navigate(['desktop'])
+        }
+      }
+    )    
     this.formdata = new FormGroup({
       username: new FormControl(''),
       password: new FormControl('')
@@ -43,7 +49,6 @@ export class LoginComponent implements OnInit {
     this.authService.login(data)
       .subscribe(
          (data) => { 
-           console.log(data)
           localStorage.setItem('token',data.access_token);
           console.log(localStorage.getItem('token'))
           this.authService.changeLoggedIn(true);
